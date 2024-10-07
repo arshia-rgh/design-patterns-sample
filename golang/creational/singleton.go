@@ -35,3 +35,31 @@ func getInstance() *Single {
 //
 //	fmt.Scanln()
 //}
+
+//--------------------------------------------------------
+
+// Singleton 2
+
+var once sync.Once
+var singleInstance2 *Single
+
+func getInstance2() *Single {
+	if singleInstance2 == nil {
+		once.Do(func() {
+			fmt.Println("Creating Instance")
+			singleInstance2 = &Single{}
+		})
+	} else {
+		fmt.Println("Instance already exists")
+	}
+
+	return singleInstance2
+}
+
+//func main() {
+//	for i := 0; i < 10; i++ {
+//		go getInstance()
+//	}
+//
+//	fmt.Scanln()
+//}
