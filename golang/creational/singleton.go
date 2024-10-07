@@ -12,10 +12,10 @@ var lock = &sync.Mutex{}
 var singleInstance *Single
 
 func getInstance() *Single {
-	if singleInstance == nil {
+	if singleInstance == nil { // check if is not nil avoid doing lock operations
 		lock.Lock()
 		defer lock.Unlock()
-		if singleInstance == nil {
+		if singleInstance == nil { // check again if another go routine created one
 			fmt.Println("Creating instance")
 			singleInstance = &Single{}
 		} else {
