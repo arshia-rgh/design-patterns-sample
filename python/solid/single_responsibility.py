@@ -11,7 +11,7 @@ class Journal:
         self.count -= 1
 
     # the persistence methods break the single responsibility
-    def save_to_file(self, file_name):
+    def save_to_file(self, file_name, line_separator):
         pass
 
     def load_from_file(self, file_name):
