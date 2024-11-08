@@ -40,7 +40,7 @@ type Persistence struct {
 	LineSeparator string
 }
 
-func (p *Persistence) SaveToFile(fileName string) {}
+func (p *Persistence) SaveToFile(journal *Journal, fileName string) {}
 
 func (p *Persistence) LoadFromFile(fileName string) {}
 

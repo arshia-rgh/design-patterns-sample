@@ -1,6 +1,7 @@
 class Journal:
-    entries = []
-    count = 0
+    def __init__(self):
+        self.entries = []
+        self.count = 0
 
     def add_entry(self, text):
         self.entries.append(f'{self.count}: {text}')
@@ -20,11 +21,11 @@ class Journal:
 
 # should separate the persistence (another class or just functions)
 class Persistence:
-    def __init__(self, line_separator):
+    def __init__(self, line_separator="\n"):
         self.line_separator = line_separator
 
-    def save_to_file(self, file_name):
+    def save_to_file(self, journal, file_name):
         pass
 
-    def load_from_file(self, file_name):
+    def load_from_file(self, journal, file_name):
         pass
