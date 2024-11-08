@@ -1,6 +1,9 @@
 package solid
 
-import "fmt"
+import (
+	"fmt"
+	"net/url"
+)
 
 // Journal struct with responsibility to manage entries
 type Journal struct {
@@ -23,11 +26,27 @@ func (j *Journal) RemoveEntry(index int) {
 }
 
 // SaveToFile breaks the single responsibility
-func (j *Journal) SaveToFile(filename string) {
-
-}
+func (j *Journal) SaveToFile(fileName string) {}
 
 // LoadFromFile breaks the single responsibility
-func (j *Journal) LoadFromFile(filename string) {
+func (j *Journal) LoadFromFile(fileName string) {}
 
+/*
+	We should separate the persistence from the journal struct
+	by separating to a separated struct or stand-alone functions
+*/
+
+type Persistence struct {
+	LineSeparator string
 }
+
+func (p *Persistence) SaveToFile(fileName string) {}
+
+func (p *Persistence) LoadFromFile(fileName string) {}
+
+func (p *Persistence) LoadFromWeb(url *url.URL) {}
+
+/*
+	Now we moved the persistence to separated component
+	and everything is ok now (we could do stand-alone functions)
+*/
