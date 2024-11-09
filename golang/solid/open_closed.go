@@ -55,3 +55,14 @@ type ColorSpecification struct {
 func (cs *ColorSpecification) IsSatisfied(p *Product) bool {
 	return p.color == cs.color
 }
+
+// if we need new filter or anything we can just add new type
+// and not modify the existing one
+
+type SizeSpecification struct {
+	size Size
+}
+
+func (ss *SizeSpecification) IsSatisfied(p *Product) bool {
+	return p.size == ss.size
+}
