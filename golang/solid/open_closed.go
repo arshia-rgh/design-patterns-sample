@@ -66,3 +66,13 @@ type SizeSpecification struct {
 func (ss *SizeSpecification) IsSatisfied(p *Product) bool {
 	return p.size == ss.size
 }
+
+// For combined filters like size and color we can use composite pattern
+
+type AndSpecification struct {
+	first, second Specification
+}
+
+func (as *AndSpecification) IsSatisfied(p *Product) bool {
+	return as.first.IsSatisfied(p) && as.second.IsSatisfied(p)
+}
