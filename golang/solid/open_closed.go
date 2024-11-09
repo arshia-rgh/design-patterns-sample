@@ -15,3 +15,9 @@ const (
 	medium
 	large
 )
+
+type Product struct {
+	name  string
+	size  Size
+	color Color
+}
