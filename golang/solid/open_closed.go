@@ -49,7 +49,6 @@ func (f *Filter) FilterBySize(products []Product, size Size) []*Product {
 	}
 	return result
 }
-}
 
 // More ... ( we need modify the Filter type) --> breaks the OCP
 
