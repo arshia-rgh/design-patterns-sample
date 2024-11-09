@@ -1,3 +1,6 @@
+from abc import abstractmethod, ABC
+
+
 class Product:
     def __init__(self, color, size):
         self.color = color
@@ -20,3 +23,43 @@ class Filter:
             if i.size == size:
                 result.append(i)
         return result
+
+
+# Used specification pattern
+# We use new class for each new fiter that should implement the same interface
+class Specification(ABC):
+    @abstractmethod
+    def is_satisfied(self, product):
+        pass
+
+
+class ColorSpecification(Specification):
+    def __init__(self, color):
+        self.color = color
+
+    def is_satisfied(self, product):
+        return product.color == self.color
+
+
+class SizeSpecification(Specification):
+    def __init__(self, size):
+        self.size = size
+
+    def is_satisfied(self, product):
+        return product.size == self.size
+
+
+class AndSpecification(Specification):
+    def __init__(self, *specs):
+        self.specs = specs
+
+    def is_satisfied(self, product):
+        return all(spec.is_satisfied(product) for spec in self.specs)
+
+
+# Now this Filter class doesn't break the OCP and use specification for filters
+#  if a new filter is added, we need to implement a new class and not to modify the existing one
+
+class BetterFilter:
+    def filter(self, spec, products):
+        return [product for product in products if spec.is_satisfied(product)]
