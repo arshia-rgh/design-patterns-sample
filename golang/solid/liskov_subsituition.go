@@ -22,6 +22,27 @@ type Square struct {
 	Rectangle
 }
 
+func NewSquare(size int) *Square {
+	square := Square{}
+	square.height = size
+	square.width = size
+	return &square
+}
+
+// we should set both high and width to keep this square
+
+func (s *Square) SetWidth(width int) {
+	s.width = width
+	s.height = width
+}
+
+func (s *Square) SetHeight(height int) {
+	s.width = height
+	s.height = height
+}
+
+// here in UseIt we will have wrong result with Square and we already violates the liskov here
+
 func UseIt(sized Sized) {
 	width := sized.GetWidth()
 	sized.SetHeight(10)
@@ -30,3 +51,16 @@ func UseIt(sized Sized) {
 
 	fmt.Println("expected: ", expectedArea, "actual: ", actualArea)
 }
+
+// solution is to do like this
+
+type Square2 struct {
+	size int // width, height
+}
+
+func (s *Square2) Rectangle() Rectangle {
+	return Rectangle{s.size, s.size}
+}
+
+// having rectangle and square together with the same interface
+//will break the liskov substitution and should be separated
