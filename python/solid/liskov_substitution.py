@@ -1,12 +1,26 @@
 class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
     def get_width(self):
-        pass
+        return self.width
 
     def set_width(self, width):
-        pass
+        self.width = width
 
     def get_height(self):
-        pass
+        return self.height
 
     def set_height(self, height):
-        pass
+        self.height = height
+
+
+class Square(Rectangle):
+    def set_width(self, width):
+        self.width = width
+        self.height = width
+
+    def set_height(self, height):
+        self.width = height
+        self.height = height
